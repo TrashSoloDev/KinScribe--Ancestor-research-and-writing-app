@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="96" fill="#1C1917"/>
+  <rect x="24" y="24" width="464" height="464" rx="80" fill="none" stroke="#B45309" stroke-width="6" opacity="0.6"/>
+  <!-- Open Book & Family Tree Motif -->
+  <path d="M120 380 C180 340, 240 350, 256 370 C272 350, 332 340, 392 380 L392 180 C332 140, 272 150, 256 170 C240 150, 180 140, 120 180 Z" fill="#F8F6F0" stroke="#78350F" stroke-width="12" stroke-linejoin="round"/>
+  <line x1="256" y1="170" x2="256" y2="370" stroke="#78350F" stroke-width="10"/>
+  <!-- Tree Branches inside book -->
+  <circle cx="256" cy="220" r="16" fill="#1D7044"/>
+  <circle cx="200" cy="260" r="12" fill="#0076CE"/>
+  <circle cx="312" cy="260" r="12" fill="#0076CE"/>
+  <circle cx="160" cy="300" r="10" fill="#B45309"/>
+  <circle cx="230" cy="300" r="10" fill="#B45309"/>
+  <circle cx="282" cy="300" r="10" fill="#B45309"/>
+  <circle cx="352" cy="300" r="10" fill="#B45309"/>
+  <path d="M256 236 L256 270 M256 270 L200 272 M256 270 L312 272 M200 272 L160 300 M200 272 L230 300 M312 272 L282 300 M312 272 L352 300" stroke="#78350F" stroke-width="6" stroke-linecap="round"/>
+  <!-- Gold Letter K -->
+  <text x="256" y="440" font-family="Georgia, serif" font-size="44" font-weight="bold" fill="#F59E0B" text-anchor="middle" letter-spacing="4">KINSCRIBE</text>
+</svg>

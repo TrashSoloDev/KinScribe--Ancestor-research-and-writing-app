@@ -1,0 +1,6 @@
+{
+  "name": "KinScribe",
+  "description": "Senior-friendly genealogy workspace compiling FamilySearch and Ancestry data into deduplicated timelines with clickable source verification, paired with a Google Docs-style family book writer.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

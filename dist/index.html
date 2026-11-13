@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script>
+      // Vite HMR is disabled in AI Studio cloud preview environment.
+      // Intercept 'vite-hmr' WebSocket to satisfy Vite client and eliminate connection errors.
+      (function() {
+        var OriginalWebSocket = window.WebSocket;
+        if (!OriginalWebSocket) return;
+
+        function MockHmrSocket() {
+          this.readyState = 1; // WebSocket.OPEN
+          this.OPEN = 1;
+          this.CONNECTING = 0;
+          this.CLOSING = 2;
+          this.CLOSED = 3;
+          this._listeners = {};
+        }
+        MockHmrSocket.prototype.send = function() {};
+        MockHmrSocket.prototype.close = function() {};
+        MockHmrSocket.prototype.addEventListener = function(event, callback) {
+          if (!this._listeners[event]) this._listeners[event] = [];
+          this._listeners[event].push(callback);
+          if (event === 'open') {
+            setTimeout(function() {
+              try { callback(new Event('open')); } catch (e) {}
+            }, 0);
+          }
+        };
+        MockHmrSocket.prototype.removeEventListener = function(event, callback) {
+          if (!this._listeners[event]) return;
+          this._listeners[event] = this._listeners[event].filter(function(cb) { return cb !== callback; });
+        };
+        MockHmrSocket.prototype.dispatchEvent = function() { return true; };
+
+        window.WebSocket = function(url, protocols) {
+          if (protocols === 'vite-hmr' || (typeof url === 'string' && (url.includes('token=') || url.includes('/@vite')))) {
+            return new MockHmrSocket();
+          }
+          return new OriginalWebSocket(url, protocols);
+        };
+        window.WebSocket.prototype = OriginalWebSocket.prototype;
+        window.WebSocket.CONNECTING = 0;
+        window.WebSocket.OPEN = 1;
+        window.WebSocket.CLOSING = 2;
+        window.WebSocket.CLOSED = 3;
+
+        // Catch any transient unhandled error or rejection
+        window.addEventListener('error', function(event) {
+          if (event && event.message && (event.message.includes('WebSocket') || event.message.includes('ws://') || event.message.includes('wss://'))) {
+            event.stopImmediatePropagation();
+          }
+        });
+        window.addEventListener('unhandledrejection', function(event) {
+          if (event && event.reason && (String(event.reason.message || event.reason).includes('WebSocket'))) {
+            event.stopImmediatePropagation();
+            if (typeof event.preventDefault === 'function') event.preventDefault();
+          }
+        });
+      })();
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover" />
+    <title>KinScribe</title>
+    <meta name="description" content="Senior-friendly genealogy workspace compiling FamilySearch and Ancestry data into deduplicated timelines with clickable source verification, paired with a Google Docs-style family book writer on Android." />
+    <meta property="og:title" content="KinScribe" />
+    <meta property="og:description" content="Senior-friendly genealogy workspace compiling FamilySearch and Ancestry data into deduplicated timelines with clickable source verification, paired with a Google Docs-style family book writer on Android." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    
+    <!-- Android & PWA App Standards -->
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F8F6F0" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0F172A" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="KinScribe" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <script type="module" crossorigin src="/assets/index-BRRVVLHl.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Ddi-rpRk.css">
+  <link rel="manifest" href="/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/registerSW.js"></script></head>
+  <body class="bg-[#F8F6F0] text-stone-900 antialiased selection:bg-amber-100 selection:text-amber-900">
+    <div id="root"></div>
+  </body>
+</html>
+

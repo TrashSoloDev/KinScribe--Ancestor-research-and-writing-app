@@ -2,7 +2,7 @@
 
 KinScribe is a genealogy research and family-history writing app. It helps organize family records and turn research, photographs, and oral memories into a cited manuscript. The interface is designed for phones and tablets, with adjustable text size and Android packaging through Capacitor.
 
-[![Download KinScribe for Android](https://img.shields.io/badge/Download-Android%20APK-3DDC84?logo=android&logoColor=white)](https://github.com/TrashSoloDev/KinScribe/releases/latest/download/kinscribe-android-debug.apk)
+[![Download KinScribe for Android](https://img.shields.io/badge/Download-Android%20APK-3DDC84?logo=android&logoColor=white)](https://github.com/TrashSoloDev/KinScribe--Ancestor-research-and-writing-app/releases/download/android-latest/kinscribe-android-debug.apk)
 
 ## Features
 
